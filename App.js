@@ -1,20 +1,21 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView, StyleSheet } from 'react-native';
+import React from 'react';
+import RootStack from './src/components/Navigator/Navigator';
+import { createStaticNavigation } from '@react-navigation/native';
+import { store } from './src/Store/Store';
+import { Provider } from 'react-redux';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const App = () => {
+	const Navigation = createStaticNavigation(RootStack);
+	return (
+		<Provider store={store}>
+			<SafeAreaView style={{ flex: 1 }}>
+				<Navigation />
+			</SafeAreaView>
+		</Provider>
+        );
+    };
+    
+    export default App;
+    
+    const styles = StyleSheet.create({});
